@@ -8,6 +8,8 @@ class RequestAdmin(admin.ModelAdmin):
     search_fields = ['title', 'description', 'user__username']
 
     def get_readonly_fields(self, request, obj=None):
+        if obj and obj.status == 'completed':
+            return ['title', 'user', 'description', 'category', 'photo', 'status', 'comment']
         return ['title', 'user', 'description', 'category', 'photo']
 
     def has_delete_permission(self, request, obj=None):

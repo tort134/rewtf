@@ -7,12 +7,12 @@
         <p>Логин: {{ user.username }}</p>
          {% for request in user_requests %}
             {% if request.status == 'new' %}
-            <p>Вы не можете сменить регион, тк у вас есть заявки в статусе новая</p>
+            <p>Вы не можете сменить регион, так как у вас есть заявки в статусе новая</p>
             {% else %}
             <p>Ваш регион: {{ user.district }}</p>
+            <a href="{% url 'update_district' %}">Изменить регион</a>
         {% endif %}
         {% endfor %}
-        <a href="{% url 'update_district' %}">Изменить регион</a>
         <a href="{% url 'change_password' %}">Сменить пароль</a>
     </div>
 

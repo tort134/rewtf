@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main>
+
+        <h2>Главная</h2>
+        {% if user.is_authenticated %}
+            <p>Здарвсвтуй, {{ user.username }}!</p>
+        {% if completed_requests %}
+        <ul class="request">
+            {% for request in completed_requests %}
+                <li>
+                    <h3>{{ request.title }}</h3>
+                    <p>Категория: {{ request.category.name }}</p>
+                    <p>Создано: {{ request.created_at }}</p>
+                    {% if request.photo %}
+                        <img src="{{ request.photo.url }}" alt="{{ request.title }}" style="max-width: 500px; max-height: 300px;"/>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Нет заявок</p>
+    {% endif %}
+
+        {% else %}
+            <p>Здарвсвтуй, гость</p>
+        {% endif %}
+    </main>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main>
+    <div class="profile-chng-distr">
+        <h1>Изменить регион</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.district }}
+            <button type="submit" class="btn">Сохранить</button>
+        </form>
+    </div>
+</main>
+{% endblock %}

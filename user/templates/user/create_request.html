@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main class="form">
+        <h1>Создать заявку</h1>
+    <form method="post" enctype="multipart/form-data" class="form-reqst">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Создать заявку</button>
+    </form>
+    <a href="{% url 'profile' %}">Назад к профилю</a>
+    </main>
+{% endblock %}

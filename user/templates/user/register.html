@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<form method="post" action="{% url 'register' %}" class="form">
+    <h2>Регистрация</h2>
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="{{ form.full_name.id_for_label }}">{{ form.full_name.label }}</label>
+        {{ form.full_name }}
+        {% if form.full_name.errors %}
+            <div class="error-messages">{{ form.full_name.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+        {{ form.username }}
+        {% if form.username.errors %}
+            <div class="error-messages">{{ form.username.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+        {{ form.email }}
+        {% if form.email.errors %}
+            <div class="error-messages">{{ form.email.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+        {{ form.password1 }}
+        {% if form.password1.errors %}
+            <div class="error-messages">{{ form.password1.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+        {{ form.password2 }}
+        {% if form.password2.errors %}
+            <div class="error-messages">{{ form.password2.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.district }}
+    </div>
+
+    <div class="form-group__checkbox">
+        <label for="{{ form.consent.id_for_label }}">{{ form.consent.label }}</label>
+        {{ form.consent }}
+        {% if form.consent.errors %}
+            <div class="error-messages">{{ form.consent.errors }}</div>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="btn">Зарегистрироваться</button>
+</form>
+ {% endblock %}

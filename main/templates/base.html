@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Заявки</title>
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1><a class="logo" href="{% url 'index' %}">Design pro</a></h1>
+
+        <div class="header-link">
+            {% if request.user.is_authenticated %}
+              {% if request.user.is_staff %}
+                <a href="{% url 'admin:index' %}">Перейти в админку</a>
+                <a href="{% url 'manage_categories' %}">Изменить категории</a>
+            {% else %}
+             {% endif %}
+
+                <form method="post" action="{% url 'logout' %}" class="links">
+                    {% csrf_token %}
+                    <button type="submit">Выйти</button>
+                </form>
+                <a href="{% url 'profile' %}">Профиль</a>
+
+            {% else %}
+                <form class="links">
+                    <a href="{% url 'login' %}">Войти</a>
+                    <a href="{% url 'register' %}">Зарегистрироваться</a>
+                </form>
+            {% endif %}
+        </div>
+    </header>
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>
